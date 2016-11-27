@@ -16,7 +16,7 @@ setwd(work_dir)
 NEI <- readRDS("data/summarySCC_PM25.rds") ## 6497651 obs. of 6 variables
 
 ## Source Code Classifications
-SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
+##SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
 
 ## Subset data for Baltimore City, Maryland observations only.
 ## Just require variables: Emissions, type and year.
@@ -25,42 +25,12 @@ Baltimore.NEI  <- subset(NEI, fips == "24510", c("Emissions", "type", "year"))
 ## year, type and Total Emissions
 Baltimore.NEI.PM25 <- aggregate(Emissions ~ year + type, data = Baltimore.NEI, sum)
 
-## Initialize png device - I found a number of problems went away vs. doing a dev.copy from screen
+## Data ready - Initialize png device.
 png(file = "plot3.png", width = 480, height = 480)
 
 ## Plot emissions from all sources by year and type (for Baltimore City, Maryland).
 ## Asked to use ggplot2 plotting system.
 library(ggplot2)
-
-## Version 1 - This is a Line Graph of Baltimore Emissions by Year & Type
-ggplot(Baltimore.NEI.PM25, aes(year, Emissions, colour=factor(type))) +
-  
-geom_line(aes(colour = type),
-          linetype = 1,
-          size = 1.5) +
-
-## Cleanup Titles & Labels.
-ggtitle(expression("Total Baltimore City, Maryland " ~ PM[2.5] ~ " by Year & Type")) +
-xlab("Year") +
-ylab(expression("Total " ~ PM[2.5] ~ " Emissions (tons)")) +
-labs(colour = "Type")  
-
-## Version 2 - This is seperate Line Graphs for each type (NON-ROAD, NONPOINT, ON-ROAD, POINT).
-qplot(year,
-      Emissions,
-      data = Baltimore.NEI.PM25) +
-
-geom_line(aes(colour = type),
-          linetype = 1,
-          size = 1.5) +
-
-facet_grid(. ~ type) +
-  
-## Cleanup Titles & Labels.
-ggtitle(expression("Total Baltimore City, Maryland " ~ PM[2.5] ~ " by Year & Type")) +
-xlab("Year") +
-ylab(expression("Total " ~ PM[2.5] ~ " Emissions (tons)")) +
-labs(colour = "Type")
 
 ## Version 3 - This is seperate Histograms for each type.
 ggplot(Baltimore.NEI,aes(factor(year),Emissions,fill=type)) +
@@ -69,9 +39,9 @@ facet_grid(. ~ type) +
 
 ## Cleanup Titles & Labels.
 ggtitle(expression("Total Baltimore City, Maryland " ~ PM[2.5] ~ " by Year & Type")) +
-  xlab("Year") +
-  ylab(expression("Total " ~ PM[2.5] ~ " Emissions (tons)")) +
-  labs(fill = "Type")
+xlab("Year") +
+ylab(expression("Total " ~ PM[2.5] ~ " Emissions (tons)")) +
+labs(fill = "Type")
 
 ## Finished so turn device off.
 dev.off()
