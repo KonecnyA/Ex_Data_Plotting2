@@ -12,21 +12,25 @@ work_dir <- "C:/Users/konecnya/A Master File/Training/Coursera/4. Exploratory Da
 setwd(work_dir)
 
 ## Load data per assignment instructions.
-NEI <- readRDS("data/summarySCC_PM25.rds")
-SCC <- readRDS("data/Source_Classification_Code.rds")
+## Environmental Protection Agency (EPA) National Emissions Inventory (NEI)
+NEI <- readRDS("data/summarySCC_PM25.rds") ## 6497651 obs. of 6 variables
 
-## Initialize png device - I found a number of problems went away vs. doing a dev.copy from screen.
+## Source Code Classifications
+SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
+
+## Initialize png device.
 png(file = "plot1.png", width = 480, height = 480)
 
-## Total emissions from all sources by year.
-total.PM25.year <- tapply(NEI$Emissions, NEI$year, sum)
+## Total Emissions from all sources by year.
+NEI.PM25.year <- tapply(NEI$Emissions, NEI$year, sum)
 
 ## Plot emissions from all sources by year.
+## Asked to use base plotting system.
 ## Build A Panel Plot - Histogram vs Line Graph
 par(mfrow = c(1, 2), mar = c(4, 4, 2, 1)) ## 1 row 2 columns
 
 ## Histogram
-barplot(total.PM25.year,
+barplot(NEI.PM25.year,
         col = rainbow(20, start = 0, end = 1),
         xlab = "Year",
         ylab = expression("Total " ~ PM[2.5] ~ " Emissions (tons)"),
@@ -34,8 +38,8 @@ barplot(total.PM25.year,
         )
 
 ## Line Graph
-plot(names(total.PM25.year),
-     total.PM25.year,
+plot(names(NEI.PM25.year),
+     NEI.PM25.year,
      type = "l",
      xlab = "Year",
      ylab = expression("Total " ~ PM[2.5] ~ " Emissions (tons)"),

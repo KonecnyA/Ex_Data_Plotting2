@@ -11,38 +11,41 @@ work_dir <- "C:/Users/konecnya/A Master File/Training/Coursera/4. Exploratory Da
 setwd(work_dir)
 
 ## Load data per assignment instructions.
-NEI <- readRDS("data/summarySCC_PM25.rds")
-SCC <- readRDS("data/Source_Classification_Code.rds")
+## Environmental Protection Agency (EPA) National Emissions Inventory (NEI)
+NEI <- readRDS("data/summarySCC_PM25.rds") ## 6497651 obs. of 6 variables
+
+## Source Code Classifications
+SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
 
 ## Subset data for Baltimore City, Maryland observations only.
 ## Just require variables: Emissions and year.
-Baltimore.City.Maryland <- subset(NEI, fips == "24510", c("Emissions", "year"))
+Baltimore.NEI <- subset(NEI, fips == "24510", c("Emissions", "year"))
 
 ## Initialize png device - I found a number of problems went away vs. doing a dev.copy from screen.
 png(file = "plot2.png", width = 480, height = 480)
 
 ## Total emissions from all sources by year for subset data.
-total.PM25.year <- tapply(Baltimore.City.Maryland$Emissions, Baltimore.City.Maryland$year, sum)
+Baltimore.NEI.PM25.year <- tapply(Baltimore.NEI$Emissions, Baltimore.NEI$year, sum)
 
 ## Plot emissions from all sources by year for subset data.
+## Asked to use base plotting system.
 ## Build A Panel Plot - Histogram vs Line Graph
-par(mfrow = c(1, 2), mar = c(4, 4, 2, 1)) ## 1 row 2 columns
+par(mfrow = c(1, 2), mar = c(4, 4, 2, 1), ps = 12, cex = 1, cex.main = 1) ## 1 row 2 columns
 
 ## Histogram
-barplot(total.PM25.year,
+barplot(Baltimore.NEI.PM25.year,
         col = rainbow(20, start = 0, end = 1),
         xlab = "Year",
         ylab = expression("Total " ~ PM[2.5] ~ " Emissions (tons)"),
-        main = expression("Total Baltimore City, Maryland " ~ PM[2.5] ~ " by Year")       
-)
+        main = expression("Total Baltimore City " ~ PM[2.5] ~ " by Year"))
 
 ## Line Graph
-plot(names(total.PM25.year),
-     total.PM25.year,
+plot(names(Baltimore.NEI.PM25.year),
+     Baltimore.NEI.PM25.year,
      type = "l",
      xlab = "Year",
      ylab = expression("Total " ~ PM[2.5] ~ " Emissions (tons)"),
-     main = expression("Total Baltimore City, Maryland " ~ PM[2.5] ~ " by Year"),
+     main = expression("Total Baltimore City " ~ PM[2.5] ~ " by Year"),
      lwd = 3,
      col = "steelblue")
 
