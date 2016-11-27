@@ -15,17 +15,17 @@ setwd(work_dir)
 NEI <- readRDS("data/summarySCC_PM25.rds") ## 6497651 obs. of 6 variables
 
 ## Source Code Classifications
-SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
+##SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
 
 ## Subset data for Baltimore City, Maryland observations only.
 ## Just require variables: Emissions and year.
 Baltimore.NEI <- subset(NEI, fips == "24510", c("Emissions", "year"))
 
-## Initialize png device - I found a number of problems went away vs. doing a dev.copy from screen.
-png(file = "plot2.png", width = 480, height = 480)
-
 ## Total emissions from all sources by year for subset data.
 Baltimore.NEI.PM25.year <- tapply(Baltimore.NEI$Emissions, Baltimore.NEI$year, sum)
+
+## Data ready - Initialize png device - I found a number of problems went away vs. doing a dev.copy from screen.
+png(file = "plot2.png", width = 480, height = 480)
 
 ## Plot emissions from all sources by year for subset data.
 ## Asked to use base plotting system.

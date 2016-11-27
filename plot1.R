@@ -16,13 +16,13 @@ setwd(work_dir)
 NEI <- readRDS("data/summarySCC_PM25.rds") ## 6497651 obs. of 6 variables
 
 ## Source Code Classifications
-SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
-
-## Initialize png device.
-png(file = "plot1.png", width = 480, height = 480)
+##SCC <- readRDS("data/Source_Classification_Code.rds") ## 11717 obs. of 15 variables
 
 ## Total Emissions from all sources by year.
 NEI.PM25.year <- tapply(NEI$Emissions, NEI$year, sum)
+
+## Data ready - Initialize png device.
+png(file = "plot1.png", width = 480, height = 480)
 
 ## Plot emissions from all sources by year.
 ## Asked to use base plotting system.
