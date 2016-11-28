@@ -24,7 +24,7 @@ Baltimore.NEI <- subset(NEI, fips == "24510", c("Emissions", "year"))
 ## Total emissions from all sources by year for subset data.
 Baltimore.NEI.PM25.year <- tapply(Baltimore.NEI$Emissions, Baltimore.NEI$year, sum)
 
-## Data ready - Initialize png device - I found a number of problems went away vs. doing a dev.copy from screen.
+## Data ready - Initialize png device.
 png(file = "plot2.png", width = 480, height = 480)
 
 ## Plot emissions from all sources by year for subset data.
