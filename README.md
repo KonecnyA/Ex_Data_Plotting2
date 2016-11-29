@@ -49,7 +49,7 @@ I set the working directory and then load the NEI data per assignment instructio
 
 ![plot4.png](https://github.com/KonecnyA/Ex_Data_Plotting2/blob/master/plot4.png)
 
-**A4**
+**A4** Comm/Institutional and Electric Generation coal combustion emissions decrease from 1999-2002.  They plateau for 2002-2005.  They then sharply decrease from 2005-2008.  Industrial Boilers coal combustion emissions increase from 1999-2002. They plateau for 2002-2005. They then sharply decrease from 2005-2008.
 
 ## plot5.R ##
 
@@ -57,7 +57,7 @@ I set the working directory and then load the NEI data per assignment instructio
 
 ![plot5.png](https://github.com/KonecnyA/Ex_Data_Plotting2/blob/master/plot5.png)
 
-**A5**
+**A5** Baltimore City motor vehicle emissions sharply decrease from 1999-2002. They then plateau from 2002-2005.  They then decrease again from 2005 to 2008.
 
 ## plot6.R ##
 
@@ -65,7 +65,7 @@ I set the working directory and then load the NEI data per assignment instructio
 
 ![plot6.png](https://github.com/KonecnyA/Ex_Data_Plotting2/blob/master/plot6.png)
 
-**A6**
+**A6** My first observation is that the motor vehicle sources emissions are significantly greater in Los Angeles County compared to Baltimore City. Los Angeles is quite different in that emissions increase from 1999-2005 and then decrease from 2005-2008.  Baltimore City declines from 1999 to 2002 and then plateaus from 2002 to 2008.
 
 ## Closing Thoughts ##
 - None at this time
