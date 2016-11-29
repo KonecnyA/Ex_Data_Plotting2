@@ -1,7 +1,7 @@
-# CodeBook - Exploratory Data Analysis Project 1 #
+# CodeBook - EDA Peer-graded Assignment: Course Project 2 #
 
 ## Introduction ##
-This markdown file is intended to  document source data, any transformations on the data and final data sets used by plot1.R, plot2.R, plot3.R and plot4.R. For documentation on my plot scripts use this link [README](https://github.com/KonecnyA/ExData_Plotting1/blob/master/README.md) .
+EPA observations and variables are required to  answer six questions in the Exploratory Data Analysis final project.  Here are the [Instructions](https://github.com/KonecnyA/Ex_Data_Plotting2/blob/master/Instructions.md "EDA Project 2 Instructions").  This markdown file is intended to  document source data, any transformations on the data and final data sets used by plot1.R to plot6.R. For documentation on my plot scripts use this link [README](https://github.com/KonecnyA/Ex_Data_Plotting2/blob/master/README.md) .
 
 ## Source Information, Data, License & Citation ##
 
@@ -56,7 +56,23 @@ The next transformation to the data set is to only select data for the first two
 The last transformation to the data prior to plotting is to convert the Date and Time. I learned using "strptime()" that it returns a POSIXlt variable which holds both date and time. I decided to use and leverage this for plotting overwriting what was in the original Time variable. I did try setting Date and Time separately and just commented them out.
 
 At this point in time there is a data frame ready to do the four plots that have been requested.
+## Source\_Classification\_Code.rds ##
+### Organization of SCCs ###
+Four levels of source descriptions for SCCs.
 
+       A BB CCC DD
+Levels 1  2   3  4
+
+Level 1
+1 - 
+2 -
+3 -
+4 -
+5 -
+6 - 
+
+
+[Reference](http://www.state.nj.us/dep/aqm/es/scc.pdf "Organizations of SCCs")
 ## Elements of a good CodeBook ##
 - Study description
 	- Who?
