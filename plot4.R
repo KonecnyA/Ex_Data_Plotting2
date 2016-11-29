@@ -28,7 +28,8 @@ NEI.plus.EI.Sector <- merge (NEI, SCC, by = "SCC")
 
 ## Subset data for coal combustion-related sources only.
 ## Within variable EI.Sector - "Comb" and "Coal".
-Coal.Combustion.Related <- NEI.plus.EI.Sector[grep("[Cc]oal", NEI.plus.EI.Sector$EI.Sector), ]
+Coal.Combustion.Related <- NEI.plus.EI.Sector[grepl("[Cc]omb", NEI.plus.EI.Sector$EI.Sector) &
+                                              grepl("[Cc]oal", NEI.plus.EI.Sector$EI.Sector), ]
 
 ## SUM by year, EI.Sector ("Combustion" and "Coal") and Total Emissions.
 total.PM25.year <- aggregate(Emissions ~ year + EI.Sector, data = Coal.Combustion.Related, sum)
@@ -36,7 +37,7 @@ total.PM25.year <- aggregate(Emissions ~ year + EI.Sector, data = Coal.Combustio
 ## Data ready - Initialize png device.
 png(file = "plot4.png", width = 480, height = 480)
 
-## Plot emissions from "combustion" and "Coal" sources by year for US.
+## Plot emissions from "Combustion" and "Coal" sources by year for US.
 library(ggplot2)
 
 ## Decided to log10 Total Emissions to better display the relative changes over time.
@@ -50,11 +51,19 @@ geom_line(aes(colour = EI.Sector),
   
 ggtitle(expression("Log10(Total) US " ~ PM[2.5] ~ " by Year & Combustion + Coal")) +
   
+theme(plot.title = element_text(size = 11, face = "bold")) + 
+  
 xlab("Year") +
   
 ylab(expression("Log10(Total) " ~ PM[2.5] ~ " Emissions (tons)")) +
   
-labs(colour = "EI Sector")
+labs(colour = "Coal Combustion") +
+
+scale_color_manual(values = c("red", "green", "blue"),
+                   
+                   labels = c("Commercial Institutional",
+                              "Electric Generation",
+                              "Industrial Boilers ICEs"))
 
 ## Finished so turn device off.
 dev.off()
